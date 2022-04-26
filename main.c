@@ -398,7 +398,7 @@ void q5(){
         Course Credit (integer)
 */
 
-void calculateGPA(){
+void calculateGPA(){ // Something wont work idk what it is
     char[7] courseCode;
     char letterGrade;
     int courseCredit;
@@ -443,9 +443,138 @@ void calculateGPA(){
 
 }
 
+// -------------------------------------------------------
+// Questions after Q9
+// Checkout https://en.cppreference.com/w/c/language/operator_precedence
+
+void q10_a(){ // Something wrong with the given code
+    int x = 2; j = 8, n = 5, m = 3;
+    m = 3 * (n = 3);
+
+    printf("%d", m);
+}
+
+// -------------------------------------------------------
+
+void q10_b(){
+    int x1 = 1, x2 = 2, x3 = 3;
+    x1 /= x2 = x3 = x1 * x2 + x3;
+    printf("x1=%d\n", x1);
+
+    /*
+        Operator precedence in C language
+        '=' operator has the right to left precedence
+        1 step: Do 'x1 * x2 + x3' => 5 and assign to x3
+        2 step: since x3 = 5 x2 is 5 as well
+        3 step: x1 /= x2 => 1 / 5 which is wrapped with int() so it will be equal to '0'
+
+    */
+}
+
+// -------------------------------------------------------
+
+void q10_c(){
+    int x1, x2, x3;
+    x1 = x2 = x3 = 3; // all the variables equal to 3
+    x1 %= (x2+x3); // 3 % 6 -> 3 
+    printf("x1=%d\n", x1); // x1 = 3
+}
+
+// -------------------------------------------------------
+
+void q10_d(){
+    int  x1=1, x2=2, x3=3;
+	x1 = x3 != x2 < x3 * x2;    
+ 	printf(“x1=%d”, x1 );
+     /*
+        Start from right side of the equation
+        1) x3 * x2 = 6 
+        2) x2(2) < 6 -> 1 (True)
+        3) x3(3) != 1 -> 1 (True)
+        4) x1 = 1  
+     */
+}
+
+// -------------------------------------------------------
+
+void q10_e(){
+    int  x1=1, x2=2, x3=3, x4;
+	x4 = --x1 || --x2 && x3++;    
+ 	printf(“x4=%d”, x4 );
+    /*
+        --x2 && x3++ -> True(1) && True(1) -> 1
+        --x1 || 1 -> True(1) && True(1) -> 1
+        x4 = 1 
+    */
+}
+
+// -------------------------------------------------------
+
+void q10_f(){
+    int   x1=0, x2=1, x3=2, x4;
+	x4 = x1++ ? x2-- : x3--;    
+ 	printf(“x4=%d”, x4 );
+    /*
+        x4 = x1++ -> x4 = 0 -> False
+        x4-- -> False
+        x4-- -> 2 
+    */
+}
+
+// -------------------------------------------------------
+// -------------------------------------------------------
+
+void q__10_a(){
+    int x = -3, y = 0, k, j;
+    for(k = j = -3; x+=k < j, ++j; y+=2);
+    printf("x = %d  y = %d  k = %d  j = %d\n", x, y, k, j);
+    /*
+        k      j    x   y
+        -3     -2   -3  0
+        -3     -1   -2  2
+        -3     0   -1   4
+        -3     1   -2   6
+    
+    */
+}
+// -------------------------------------------------------
+
+void q__10_b(){
+    int x = 0, z = -7;
+    do{						
+    z++;
+    printf("%d\n", z);						  
+    if(x){							  
+        printf("How \n");
+        if(z == x) printf("%d\n", z); break;
+        printf("Are you \n");
+    }
+    x -= 2;
+    printf("%d\n", z);
+    printf("Today ? \n");
+    }while(z < -3);
+
+}
+// -------------------------------------------------------
+
+void q__10_c(){}
+// -------------------------------------------------------
+
+void q__10_d(){}
+// -------------------------------------------------------
+
+void q__10_e(){}
+// -------------------------------------------------------
+
+void q__10_f(){}
+// -------------------------------------------------------
+
+void q__10_g(){}
+
+
 int main(){
         
-    calculateGPA();
+    q__10_b();
         
     return 0;
 }
